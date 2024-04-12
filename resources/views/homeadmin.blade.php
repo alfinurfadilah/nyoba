@@ -127,82 +127,64 @@
         <!-- /.row -->
 
 
-        <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card">
+        <!-- /.col -->
+        <div class="col-md-8">
+            <div class="card bg-warning">
               <div class="card-header">
-                <h3 class="card-title">Bordered Table</h3>
+                <h3 class="card-title">Data Pelanggan Belum Bayar Bulan ini</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Task</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table id="" class="display table table-striped table-hover" >
+                    <thead>
+                      <tr>
+                              <th>No.</th>
+                              <th>Id Pelanggan</th>
+                              <th>Nama </th>
+                              <th>Harga Paket</th>
+                              <th>Status Pembayaran</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                          @foreach($datapembayaran as $key => $item)
+                              <tr>
+                                  <td class="center-heading">{{$key+1}}</td>
+                                  <td>{{$item->id_pelanggan}}</td>
+                                  <td>{{$item->nama}}</td>
+                                  <td>Rp {{number_format($item->harga_paket, 0, ',', '.')}}</td>
+                                  <td>
+                                      @if($item->payment_status)
+                                          <button class="btn btn-success btn-sm btn-payment">Sudah Dibayar</button>
+                                      @else
+                                          <button class="btn btn-danger btn-sm btn-payment">Belum Dibayar</button>
+                                      @endif
+                                  </td>
+                              </tr>
+                          @endforeach
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
-              </div>
             </div>
             <!-- /.card -->
+          </div>
+          <!-- /.col -->
 </body>
+<script>
+  setInterval('load()', 1000);
+    function load() {
+        $('#load').load('{{ Route('dashboard.pembayaran') }}')
+    }
+</script>
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
