@@ -24,7 +24,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard-admin', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('dashboard.admin');
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
+    Route::get('dashboard-teknisi', [App\Http\Controllers\HomeTeknisiController::class, 'index'])->name('dashboard.teknisi');
     // DASHBOARD REALTIME
     Route::get('dashboard/report', [App\Http\Controllers\HomeController::class, 'report'])->name('dashboard.report');
     Route::get('dashboard/cpu', [App\Http\Controllers\HomeController::class, 'cpu'])->name('dashboard.cpu');

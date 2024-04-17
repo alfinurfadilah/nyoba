@@ -146,27 +146,18 @@ public function update(Request $request, $id)
     $reportsurvey->id_site = $request->id_site;
     $reportsurvey->tanggal_survey = $request->tanggal_survey;
     $reportsurvey->waktu = $request->waktu;
-    $reportsurvey->save();
-    
-
-    // Ambil nama teknisi dari input dan cari ID-nya
     $nama_teknisi = explode(", ", $request->input('nama_teknisi', ''));
     $id_teknisi_array = [];
     foreach ($nama_teknisi as $nama) {
-        // Tambahkan tanda kutip pada nilai nama dalam kueri
         $teknisi = Teknisi::where('nama_teknisi', $nama)->first();
         if ($teknisi) {
             $id_teknisi_array[] = $teknisi->id;
         }
     }
-    // Sinkronkan relasi many-to-many antara Reportsurvey dan Teknisi
-    $reportsurvey = Reportsurvey::find($id);
     $reportsurvey->teknisis()->sync($id_teknisi_array);
     $reportsurvey->hard_survey = $request->hard_survey;
     $reportsurvey->status = $request->status;
     $reportsurvey->save();
-
-    // Buat instance Jadwalpemasangan
     $result = Jadwalpemasangan::create([
         'nama' => $request->nama,
         'id_reportsurvey' => $reportsurvey->id,
