@@ -92,16 +92,37 @@
     </div>
     <!-- /.content-header -->
 
+    
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>
+                  {{$totalTeknisi}}
+                </h3>
+
+                <p>Jumlah Teknisi</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{$totalDatacapel}}</h3>
+                <h3>1</h3>
 
                 <p>New Orders</p>
               </div>
@@ -126,22 +147,7 @@
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>Rp {{number_format($totalPemasukan, 0, ',', '.')}}</h3>
-
-                <p>Total Pemasukan</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
+          
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
@@ -188,21 +194,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                          @foreach($datapembayaranBelumDibayar as $key => $item)
-                              <tr class="center-heading">
-                                  <td>{{$key+1}}</td>
-                                  <td>{{$item->id_pelanggan}}</td>
-                                  <td>{{$item->nama}}</td>
-                                  <td>Rp {{number_format($item->harga_paket, 0, ',', '.')}}</td>
-                                  <td>
-                                    @if($item->payment_status == 'Sudah Dibayar')
-                                    <button class="btn btn-success btn-sm btn-payment">{{$item->payment_status}}</button>
-                                    @elseif($item->payment_status == 'Belum Dibayar')
-                                    <button class="btn btn-danger btn-sm btn-payment">{{$item->payment_status}}</button>
-                                    @endif
-                                  </td>
-                              </tr>
-                          @endforeach
+                          
                     </tbody>
                   </table>
                 </div>

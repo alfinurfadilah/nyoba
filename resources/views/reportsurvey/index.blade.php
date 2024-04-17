@@ -328,8 +328,8 @@
                             @foreach($site as $key => $item)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td id="site{{$key+1}}">{{$item->site}}</td>
-                                <td id="alamat_site{{$key+1}}">{{$item->alamat_site}}</td>
+                                <td id="{{$key+1}}">{{$item->site}}</td>
+                                <td id="{{$key+1}}">{{$item->alamat_site}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-xs btn-pilih" onclick="pilihSite('{{$item->id}}', '{{$item->site}}')" data-bs-dismiss="modal">
                                         Pilih
@@ -452,7 +452,7 @@
     /* Warna teks tombol saat dihover (putih) */
     transform: scale(1.05);
 }
-    </style>
+</style>
 <script>
     $(document).ready(function() {
         $('#example2').DataTable({
@@ -473,7 +473,7 @@
     $(document).ready(function() {
     $('#pilih-teknisi').click(function() {
         var selectedTeknisi = [];
-        $('.pilih-teknisi:checked').each(function() {
+        $('#staticBackdrop1').find('.pilih-teknisi:checked').each(function() {
             var id = $(this).data('id');
             var nama = $(this).data('nama');
             selectedTeknisi.push({ id: id, nama: nama });
